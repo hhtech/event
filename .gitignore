@@ -1,0 +1,8 @@
+# 源文件不提交，index.html 由 encrypt.js 生成（含加密内容）
+app.html
+encrypt.js
+# 本地提醒配置（含邮箱授权码，勿提交）
+reminder_local.ps1
+test_notify_local.ps1
+__pycache__/
+*.pyc

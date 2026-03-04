@@ -1,0 +1,35 @@
+name: 每日纪念日提醒
+
+on:
+  # 每天 UTC 00:00 运行（北京时间 08:00）
+  schedule:
+    - cron: "0 0 * * *"
+
+  # 允许手动触发（方便测试）
+  workflow_dispatch:
+
+jobs:
+  remind:
+    name: 检查并推送纪念日提醒
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 拉取代码（含 events.json）
+      - name: 检出仓库
+        uses: actions/checkout@v4
+
+      # 2. 设置 Python
+      - name: 设置 Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # 3. 安装依赖
+      - name: 安装依赖
+        run: pip install apprise
+
+      # 4. 运行提醒脚本
+      - name: 运行提醒脚本
+        env:
+          APPRISE_URLS: ${{ secrets.APPRISE_URLS }}
+        run: python reminder.py
