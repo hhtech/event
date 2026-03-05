@@ -9,12 +9,22 @@
     {
       "id": "demo-001",
       "name": "在一起纪念日",
-      "date": "2020-02-14",
+      "date": "2018-03-01",
       "repeat": "yearly",
       "type": "anniversary",
       "category": "love",
       "note": "最美好的开始",
-      "pinned": true
+      "pinned": true,
+      "icon": "💕",
+      "timingMode": "countdown",
+      "remindDays": [
+        7
+      ],
+      "continuous": true,
+      "smartList": "today",
+      "ignoreYear": false,
+      "showAge": true,
+      "endRepeat": "never"
     },
     {
       "id": "demo-002",
