@@ -440,7 +440,26 @@
       "ignoreYear": false,
       "showAge": true,
       "endRepeat": "never",
-      "pinned": false
+      "pinned": true
+    },
+    {
+      "id": "56f5b684-f3ee-432e-975c-0f43b6a0cb92",
+      "name": "结婚纪念日",
+      "date": "2025-12-18",
+      "repeat": "yearly",
+      "type": "countdown",
+      "icon": "🎂",
+      "category": "love",
+      "timingMode": "countdown",
+      "remindDays": [
+        7
+      ],
+      "continuous": true,
+      "smartList": "today",
+      "ignoreYear": false,
+      "showAge": true,
+      "endRepeat": "never",
+      "pinned": true
     }
   ]
 }
