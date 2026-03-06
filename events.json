@@ -461,5 +461,13 @@
       "endRepeat": "never",
       "pinned": true
     }
-  ]
+  ],
+  "config": {
+    "sendkeys": [
+      {
+        "name": "微信1",
+        "keyEnc": "v6iMo/xinJfjT0x6Ywvta8nbW39ePpmIaOE2D0J3KTPKZu924w8uDxZMTLT67dVX13Jf6eop/SWy+ZEU+IM="
+      }
+    ]
+  }
 }
