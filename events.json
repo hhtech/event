@@ -463,6 +463,11 @@
     }
   ],
   "config": {
-    "sendkeys": []
+    "sendkeys": [
+      {
+        "name": "weixin",
+        "keyEnc": "i+biR7wDiPHGVSrOXmAHbw2aZP9Lj4mKXyL0ETnSYeQgRXW6elWYxdki67H1j61pciPXFS6PrX1hO+srYoQ="
+      }
+    ]
   }
 }
