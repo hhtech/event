@@ -14,7 +14,7 @@
       "type": "anniversary",
       "category": "love",
       "note": "最美好的开始",
-      "pinned": true,
+      "pinned": false,
       "icon": "💕",
       "timingMode": "countdown",
       "remindDays": [
@@ -96,7 +96,7 @@
       "ignoreYear": false,
       "showAge": true,
       "endRepeat": "never",
-      "pinned": true
+      "pinned": false
     },
     {
       "id": "33e0b578-2f54-4e90-a18e-49dba69ea69f",
@@ -186,7 +186,7 @@
       "ignoreYear": false,
       "showAge": true,
       "endRepeat": "never",
-      "pinned": true
+      "pinned": false
     },
     {
       "id": "5deb405e-ccfe-4803-820d-0beffd6429f7",
@@ -204,7 +204,7 @@
       "ignoreYear": false,
       "showAge": true,
       "endRepeat": "never",
-      "pinned": true
+      "pinned": false
     },
     {
       "id": "cbf5e48a-5690-4ca8-9764-bbb902e282a9",
@@ -276,7 +276,7 @@
       "ignoreYear": false,
       "showAge": true,
       "endRepeat": "never",
-      "pinned": true
+      "pinned": false
     },
     {
       "id": "393d628f-2eac-4b94-8cb2-771797d4b90a",
@@ -421,14 +421,14 @@
       "ignoreYear": true,
       "showAge": true,
       "endRepeat": "never",
-      "pinned": true
+      "pinned": false
     },
     {
       "id": "9b27cd96-2ae7-4ae4-ba84-7a7f56627912",
       "name": "领证纪念日",
       "date": "2025-11-12",
       "repeat": "yearly",
-      "type": "countdown",
+      "type": "anniversary",
       "icon": "🎂",
       "category": "love",
       "timingMode": "countdown",
@@ -440,7 +440,7 @@
       "ignoreYear": false,
       "showAge": true,
       "endRepeat": "never",
-      "pinned": true
+      "pinned": false
     },
     {
       "id": "56f5b684-f3ee-432e-975c-0f43b6a0cb92",
@@ -459,7 +459,7 @@
       "ignoreYear": false,
       "showAge": true,
       "endRepeat": "never",
-      "pinned": true
+      "pinned": false
     }
   ],
   "config": {
