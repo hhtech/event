@@ -15,7 +15,9 @@ event/
 ├── events.json             # 纪念日数据
 ├── reminder.py             # 提醒检查 + Apprise 推送
 ├── .github/workflows/
-│   └── daily.yml           # 每日定时任务（UTC 00:00）
+│   └── daily.yml           # 每日定时任务（UTC 00:00）+ 保活提交
+├── .github/keepalive/
+│   └── last-seen.txt       # 工作流最近一次运行记录
 └── README.md
 ```
 
@@ -123,19 +125,25 @@ git push
 
 | 文件 | 说明 |
 |------|------|
-| `.github/workflows/daily.yml` | 每日纪念日检查与推送 |
+| `.github/workflows/daily.yml` | 每日纪念日检查、推送，并提交保活文件 |
+| `.github/keepalive/last-seen.txt` | 记录最近一次工作流运行时间，用于制造真实仓库活动 |
 
 ### 触发方式
 
 - **定时触发**：每天 **UTC 00:00**（北京时间 08:00）自动运行
 - **手动触发**：仓库 → **Actions** → 选择「每日纪念日提醒」→ **Run workflow**
 
+### 保活机制
+
+GitHub 会在公开仓库长期无活动时自动停用定时工作流。为避免这一点，本项目会在每次运行时更新并提交 `.github/keepalive/last-seen.txt`，让仓库持续保持真实提交活动。
+
 ### 运行步骤
 
 1. 检出仓库（含 `events.json`）
-2. 设置 Python 3.11
-3. 安装 Apprise
-4. 执行 `reminder.py` 检查并推送提醒
+2. 更新并提交保活文件
+3. 设置 Python 3.11
+4. 安装 Apprise
+5. 执行 `reminder.py` 检查并推送提醒
 
 ### 必需配置
 

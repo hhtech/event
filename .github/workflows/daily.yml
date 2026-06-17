@@ -8,27 +8,56 @@ on:
   # 允许手动触发（方便测试）
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   remind:
-    name: 检查并推送纪念日提醒
+    name: 保活仓库并推送纪念日提醒
     runs-on: ubuntu-latest
 
     steps:
       # 1. 拉取代码（含 events.json）
       - name: 检出仓库
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
-      # 2. 设置 Python
+      # 2. 写入并提交保活文件，避免公开仓库的定时工作流因长期无活动被自动停用
+      - name: 更新保活文件
+        shell: bash
+        run: |
+          mkdir -p .github/keepalive
+          {
+            echo "last_run_utc=$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            echo "trigger=${{ github.event_name }}"
+            echo "run_id=${{ github.run_id }}"
+          } > .github/keepalive/last-seen.txt
+
+      - name: 提交保活文件
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/keepalive/last-seen.txt
+          if git diff --cached --quiet; then
+            echo "No keepalive changes to commit."
+            exit 0
+          fi
+          git commit -m "chore: keep workflow alive"
+          git push
+
+      # 3. 设置 Python
       - name: 设置 Python 3.11
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      # 3. 安装依赖
+      # 4. 安装依赖
       - name: 安装依赖
         run: pip install apprise
 
-      # 4. 运行提醒脚本
+      # 5. 运行提醒脚本
       - name: 运行提醒脚本
         env:
           APPRISE_URLS: ${{ secrets.APPRISE_URLS }}
