@@ -15,7 +15,7 @@ event/
 ├── events.json             # 纪念日数据
 ├── reminder.py             # 提醒检查 + Apprise 推送
 ├── .github/workflows/
-│   └── daily.yml           # 每日定时任务（UTC 00:00）+ 保活提交
+│   └── daily.yml           # 外部定时触发 + 保活提交
 ├── .github/keepalive/
 │   └── last-seen.txt       # 工作流最近一次运行记录
 └── README.md
@@ -130,12 +130,35 @@ git push
 
 ### 触发方式
 
-- **定时触发**：每天 **UTC 00:00**（北京时间 08:00）自动运行
+- **外部定时触发**：推荐使用 `cron-job.org` 每天调用 GitHub API
 - **手动触发**：仓库 → **Actions** → 选择「每日纪念日提醒」→ **Run workflow**
+
+### cron-job.org 配置
+
+创建一个每天运行的 Cronjob，HTTP 请求配置如下：
+
+```text
+URL:
+https://api.github.com/repos/hhtech/event/actions/workflows/daily.yml/dispatches
+
+Method:
+POST
+
+Headers:
+Accept: application/vnd.github+json
+Authorization: Bearer 你的_GITHUB_TOKEN
+X-GitHub-Api-Version: 2022-11-28
+Content-Type: application/json
+
+Body:
+{"ref":"main"}
+```
+
+GitHub Token 建议使用 Fine-grained personal access token，只授权本仓库，并授予 `Actions: Read and write` 权限。
 
 ### 保活机制
 
-GitHub 会在公开仓库长期无活动时自动停用定时工作流。为避免这一点，本项目会在每次运行时更新并提交 `.github/keepalive/last-seen.txt`，让仓库持续保持真实提交活动。
+GitHub 会在公开仓库长期无活动时自动停用内置定时工作流。为避免依赖 GitHub `schedule`，本项目改为由外部定时器触发，并在每次运行时更新并提交 `.github/keepalive/last-seen.txt`，让仓库持续保持真实提交活动。
 
 ### 运行步骤
 
